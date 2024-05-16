@@ -1,10 +1,28 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import { WiCloud } from "react-icons/wi";
-import { WiDaySunny } from "react-icons/wi";
-import { WiDayCloudy } from "react-icons/wi";
-import { WiCloudy } from "react-icons/wi";
+import {
+  WiCloud,
+  WiDaySunny,
+  WiDayCloudy,
+  WiCloudy,
+  WiRain,
+  WiLightning,
+  WiSnow,
+  WiFog,
+} from "react-icons/wi";
+
+const wetherIcons = {
+  "01": <WiDaySunny size={32} />,
+  "02": <WiDayCloudy size={32} />,
+  "03": <WiCloud size={32} />,
+  "04": <WiCloudy size={32} />,
+  "09": <WiRain size={32} />,
+  10: <WiRain size={32} />,
+  11: <WiLightning size={32} />,
+  13: <WiSnow size={32} />,
+  50: <WiFog size={32} />,
+};
 
 const WeatherIcon = () => {
   const [latitude, setLatitude] = useState();
@@ -49,18 +67,7 @@ const WeatherIcon = () => {
 
   return (
     <div className="text-xs flex items-center">
-      {weatherData.weather[0].icon.substring(0, 2) === "01" && (
-        <WiDaySunny size={32} />
-      )}
-      {weatherData.weather[0].icon.substring(0, 2) === "02" && (
-        <WiDayCloudy size={32} />
-      )}
-      {weatherData.weather[0].icon.substring(0, 2) === "03" && (
-        <WiCloud size={32} />
-      )}
-      {weatherData.weather[0].icon.substring(0, 2) === "04" && (
-        <WiCloudy size={32} />
-      )}
+      {wetherIcons["50"]}
       <div className="w-16">
         <div className="font-semibold">{weatherData.name}</div>
         <div>{weatherData.main.temp.toFixed(1)}℃</div>
